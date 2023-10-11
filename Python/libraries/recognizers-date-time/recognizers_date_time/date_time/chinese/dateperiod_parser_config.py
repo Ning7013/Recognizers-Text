@@ -284,9 +284,15 @@ class ChineseDatePeriodParserConfiguration(DatePeriodParserConfiguration):
             return -2
         if source.endswith('后年'):
             return 2
+        if source.endswith('後年'):
+            return 2
         if source.startswith('下个'):
             return 1
         if source.startswith('上个'):
+            return -1
+        if source.startswith('下個'):
+            return 1
+        if source.startswith('上個'):
             return -1
         if regex.search(self.this_prefix_regex, source):
             return 0
@@ -317,7 +323,7 @@ class ChineseDatePeriodParserConfiguration(DatePeriodParserConfiguration):
         return False
 
     def is_week_only(self, source: str) -> bool:
-        return source.strip().lower().endswith('周') or source.strip().lower().endswith('星期')
+        return source.strip().lower().endswith('周') or source.strip().lower().endswith('星期') or source.strip().lower().endswith('禮拜')
 
     def is_weekend(self, source: str) -> bool:
         return source.strip().lower().endswith('周末')
@@ -326,7 +332,7 @@ class ChineseDatePeriodParserConfiguration(DatePeriodParserConfiguration):
         return source.strip().lower().endswith('月')
 
     def is_last_cardinal(self, source: str) -> bool:
-        return source.strip().lower() == '最后一'
+        return source.strip().lower() == '最后一' or source.strip().lower() == '最後一'
 
     def is_year_only(self, source: str) -> bool:
         return source.strip().lower().endswith('年')

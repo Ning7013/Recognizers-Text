@@ -127,11 +127,11 @@ class ChineseDateTimeParserConfiguration():
     def get_matched_now_timex(self, source: str) -> MatchedTimex:
         source = source.strip().lower()
 
-        if source.endswith('现在'):
+        if source in ['现在', '現在', '當下', '当下']:
             return MatchedTimex(True, 'PRESENT_REF')
-        elif source in ['刚刚才', '刚刚', '刚才']:
+        elif source in ['刚刚才', '刚刚', '刚才', '剛剛才','剛剛','剛才']:
             return MatchedTimex(True, 'PAST_REF')
-        elif source in ['立刻', '马上']:
+        elif source in ['立刻', '马上','馬上']:
             return MatchedTimex(True, 'FUTURE_REF')
 
         return MatchedTimex(False, None)

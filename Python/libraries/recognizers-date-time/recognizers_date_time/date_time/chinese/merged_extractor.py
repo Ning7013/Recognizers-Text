@@ -16,7 +16,7 @@ class ChineseMergedExtractor(BaseMergedExtractor):
     def __init__(self, options: DateTimeOptions):
         super().__init__(ChineseMergedExtractorConfiguration(), options)
         self.day_of_month_regex = RegExpUtility.get_safe_reg_exp(
-            '^\\d{1,2}号', regex.I)
+            '^\\d{1,2}[号號日]', regex.I)
 
     def extract(self, source: str, reference: datetime = None) -> List[ExtractResult]:
         if reference is None:
@@ -165,7 +165,7 @@ class ChineseMergedExtractor(BaseMergedExtractor):
 
         if value_end != len(source):
             last_char = source[value_end]
-            if value.text.endswith('周') and value_end < len(source) and last_char == '岁':
+            if value.text.endswith('周') and value_end < len(source) and (last_char == '岁' or last_char == '歲'):
                 return False
 
         if regex.search(self.day_of_month_regex, value.text):

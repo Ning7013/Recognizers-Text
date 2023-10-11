@@ -62,6 +62,8 @@ class ChineseDatePeriodExtractor(BaseDatePeriodExtractor):
                 before_str = source[:period_begin]
                 if before_str.strip().endswith('从'):
                     period_begin = before_str.rfind('从')
+                if before_str.strip().endswith('從'):
+                    period_begin = before_str.rfind('從')
 
                 tokens.append(Token(period_begin, period_end))
                 index += 2

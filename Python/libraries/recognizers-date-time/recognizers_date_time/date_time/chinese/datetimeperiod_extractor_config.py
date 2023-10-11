@@ -240,10 +240,12 @@ class ChineseDateTimePeriodExtractorConfiguration(DateTimePeriodExtractorConfigu
     def get_from_token_index(self, source: str) -> MatchedIndex:
         if source.endswith('从'):
             return MatchedIndex(True, source.rindex('从'))
+        if source.endswith('從'):
+            return MatchedIndex(True, source.rindex('從'))
         return MatchedIndex(False, -1)
 
     def get_between_token_index(self, source: str) -> MatchedIndex:
         return MatchedIndex(False, -1)
 
     def has_connector_token(self, source: str) -> bool:
-        return source in ['和', '与', '到']
+        return source in ['和', '与', '到','與']

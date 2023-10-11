@@ -17,44 +17,44 @@ class ChineseDateTime:
     LangMarker = 'Chi'
     MonthRegex = f'(?<month>正月|一月|二月|三月|四月|五月|六月|七月|八月|九月|十月|十一月|十二月|01月|02月|03月|04月|05月|06月|07月|08月|09月|10月|11月|12月|1月|2月|3月|4月|5月|6月|7月|8月|9月|大年(?!龄|纪|级))'
     DayRegex = f'(?<day>01|02|03|04|05|06|07|08|09|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31|1|2|3|4|5|6|7|8|9)'
-    OneToNineIntegerRegex = f'[一二三四五六七八九壹贰叁肆伍陆柒捌玖]'
-    DateDayRegexInCJK = f'(?<day>(([12][0-9]|3[01]|[1-9]|[三叁][十拾][一壹]?|[二贰貳]?[十拾]({OneToNineIntegerRegex})?|{OneToNineIntegerRegex})[日号]|初一|三十))'
+    OneToNineIntegerRegex = f'[一二三四五六七八九壹贰貳叁肆伍陆陸柒捌玖]'
+    DateDayRegexInCJK = f'(?<day>(([12][0-9]|3[01]|[1-9]|[三叁][十拾][一壹]?|[二贰貳]?[十拾]({OneToNineIntegerRegex})?|{OneToNineIntegerRegex})[日号號]|初一|三十))'
     DayRegexNumInCJK = f'(?<day>[12][0-9]|3[01]|[1-9]|[三叁][十拾][一壹]?|[二贰貳]?[十拾]({OneToNineIntegerRegex})?|{OneToNineIntegerRegex}|廿|卅)'
     MonthNumRegex = f'(?<month>01|02|03|04|05|06|07|08|09|10|11|12|1|2|3|4|5|6|7|8|9)'
     TwoNumYear = '50'
     YearNumRegex = f'(?<year>((1[5-9]|20)\\d{{2}})|2100)'
     SimpleYearRegex = f'(?<year>(\\d{{2,4}}))'
-    ZeroToNineIntegerRegexCJK = f'[一二三四五六七八九零壹贰叁肆伍陆柒捌玖〇两千俩倆仨]'
+    ZeroToNineIntegerRegexCJK = f'[一二三四五六七八九零壹贰貳叁肆伍陆陸柒捌玖〇两兩千俩倆仨]'
     DynastyStartYear = '元'
-    RegionTitleRegex = f'(贞观|开元|神龙|洪武|建文|永乐|景泰|天顺|成化|嘉靖|万历|崇祯|顺治|康熙|雍正|乾隆|嘉庆|道光|咸丰|同治|光绪|宣统|民国)'
+    RegionTitleRegex = f'(贞观|貞觀|开元|開元|神龙|神龍|洪武|建文|永乐|永樂|景泰|天顺|天順|成化|嘉靖|万历|萬歷|崇祯|崇禎|顺治|順治|康熙|雍正|乾隆|嘉庆|嘉慶|道光|咸丰|咸豐|同治|光绪|光緒|宣统|宣統|民国|民國)'
     DynastyYearRegex = f'(?<dynasty>{RegionTitleRegex})(?<biasYear>({DynastyStartYear}|\\d{{1,3}}|[十拾]?({ZeroToNineIntegerRegexCJK}[十百拾佰]?){{0,3}}))'
     DateYearInCJKRegex = f'(?<yearCJK>({ZeroToNineIntegerRegexCJK}{ZeroToNineIntegerRegexCJK}{ZeroToNineIntegerRegexCJK}{ZeroToNineIntegerRegexCJK}|{ZeroToNineIntegerRegexCJK}{ZeroToNineIntegerRegexCJK}|{ZeroToNineIntegerRegexCJK}{ZeroToNineIntegerRegexCJK}{ZeroToNineIntegerRegexCJK}|{DynastyYearRegex}))'
     WeekDayRegex = f'(?<weekday>周日|周天|周一|周二|周三|周四|周五|周六|星期一|星期二|星期三|星期四|星期五|星期六|星期日|星期天|礼拜一|礼拜二|礼拜三|礼拜四|礼拜五|礼拜六|礼拜日|礼拜天|禮拜一|禮拜二|禮拜三|禮拜四|禮拜五|禮拜六|禮拜日|禮拜天|週日|週天|週一|週二|週三|週四|週五|週六)'
     WeekDayStartEnd = f'^[.]'
-    LunarRegex = f'(农历|初一|正月|大年(?!龄|纪|级))'
-    DateThisRegex = f'(这个|这一个|这|这一|本){WeekDayRegex}'
-    DateLastRegex = f'(上一个|上个|上一|上|最后一个|最后)(的)?{WeekDayRegex}'
-    DateNextRegex = f'(下一个|下个|下一|下)(的)?{WeekDayRegex}'
+    LunarRegex = f'(农历|農曆|初一|正月|大年(?!龄|齡|纪|紀|级|級))'
+    DateThisRegex = f'(这个|這個|这一个|這一個|这|這|这一|這一|本){WeekDayRegex}'
+    DateLastRegex = f'(上一[個个]|上[個个]|上一|上|最[后後]一个|最[后後])(的)?{WeekDayRegex}'
+    DateNextRegex = f'(下一[個个]|下[個个]|下一|下)(的)?{WeekDayRegex}'
     WeekWithWeekDayRangeRegex = f'^[.]'
-    WoMLastRegex = f'最后一'
-    WoMPreviousRegex = f'上个'
-    WoMNextRegex = f'下个'
+    WoMLastRegex = f'最[后後]一'
+    WoMPreviousRegex = f'上[个個]'
+    WoMNextRegex = f'下[个個]'
     SpecialMonthRegex = f'^[.]'
     SpecialYearRegex = f'^[.]'
     MonthDayRange = f'^[.]'
     SpecialDayRegex = f'(最近|前天|后天|昨天|明天|今天|今日|明日|昨日|大后天|大前天|後天|大後天)'
     SpecialDayWithNumRegex = f'^[.]'
-    WeekDayOfMonthRegex = f'((({MonthRegex}|{MonthNumRegex})的\\s*)(?<cardinal>第一个|第二个|第三个|第四个|第五个|最后一个)\\s*{WeekDayRegex})'
+    WeekDayOfMonthRegex = f'((({MonthRegex}|{MonthNumRegex})的\\s*)(?<cardinal>(第一|第二|第三|第四|第五|最[后後]一)[个個])\\s*{WeekDayRegex})'
     WeekDayAndDayRegex = f'^[.]'
-    ThisPrefixRegex = f'这个|这一个|这|这一|本|今'
-    LastPrefixRegex = f'上个|上一个|上|上一|去'
-    NextPrefixRegex = f'下个|下一个|下|下一|明'
+    ThisPrefixRegex = f'這一?[个個]?|这一?[个個]?|本|今'
+    LastPrefixRegex = f'上一?[个個]?|去|前一'
+    NextPrefixRegex = f'次一?[个個]?|下一?[个個]?|明|來|翌'
     RelativeRegex = f'(?<order>({ThisPrefixRegex}|{LastPrefixRegex}|{NextPrefixRegex}))'
     SpecialDate = f'(?<thisyear>({ThisPrefixRegex}|{LastPrefixRegex}|{NextPrefixRegex})年)?(?<thismonth>({ThisPrefixRegex}|{LastPrefixRegex}|{NextPrefixRegex})月)?{DateDayRegexInCJK}'
-    DateUnitRegex = f'(?<unit>年|个月|周|週|日|天)'
+    DateUnitRegex = f'(?<unit>年|[个個]月|周|週|[个個][禮礼]拜|[个個]星期|日|天)'
     BeforeRegex = f'以前|之前|前'
-    AfterRegex = f'以后|以後|之后|之後|后|後|还剩'
-    TimePeriodLeftRegex = f'还剩'
+    AfterRegex = f'以后|以後|之后|之後|后|後|[还還]剩'
+    TimePeriodLeftRegex = f'还剩|還剩'
     DateRegexList1 = f'({LunarRegex}(\\s*))?((({SimpleYearRegex}|{DateYearInCJKRegex})年)(\\s*))?{MonthRegex}(\\s*){DateDayRegexInCJK}((\\s*|,|，){WeekDayRegex})?'
     DateRegexList2 = f'((({SimpleYearRegex}|{DateYearInCJKRegex})年)(\\s*))?({LunarRegex}(\\s*))?{MonthRegex}(\\s*){DateDayRegexInCJK}((\\s*|,|，){WeekDayRegex})?'
     DateRegexList3 = f'((({SimpleYearRegex}|{DateYearInCJKRegex})年)(\\s*))?({LunarRegex}(\\s*))?{MonthRegex}(\\s*)({DayRegexNumInCJK}|{DayRegex})((\\s*|,|，){WeekDayRegex})?'
@@ -65,45 +65,45 @@ class ChineseDateTime:
     DateRegexList8 = f'{SimpleYearRegex}\\s*[/\\\\\\-\\. ]\\s*{MonthNumRegex}\\s*[/\\\\\\-\\. ]\\s*{DayRegex}'
     DatePeriodTillRegex = f'(?<till>到|至|--|-|—|——|~|–)'
     DatePeriodRangeSuffixRegex = f'^\\b$'
-    DatePeriodRangePrefixRegex = f'从'
-    DatePeriodTillSuffixRequiredRegex = f'(?<till>与|和)'
-    DatePeriodDayRegexInCJK = f'(?<day>初一|三十|一日|十一日|二十一日|三十一日|二日|三日|四日|五日|六日|七日|八日|九日|十二日|十三日|十四日|十五日|十六日|十七日|十八日|十九日|二十二日|二十三日|二十四日|二十五日|二十六日|二十七日|二十八日|二十九日|一日|十一日|十日|二十一日|二十日|三十一日|三十日|二日|三日|四日|五日|六日|七日|八日|九日|十二日|十三日|十四日|十五日|十六日|十七日|十八日|十九日|二十二日|二十三日|二十四日|二十五日|二十六日|二十七日|二十八日|二十九日|十日|二十日|三十日|10日|11日|12日|13日|14日|15日|16日|17日|18日|19日|1日|20日|21日|22日|23日|24日|25日|26日|27日|28日|29日|2日|30日|31日|3日|4日|5日|6日|7日|8日|9日|一号|十一号|二十一号|三十一号|二号|三号|四号|五号|六号|七号|八号|九号|十二号|十三号|十四号|十五号|十六号|十七号|十八号|十九号|二十二号|二十三号|二十四号|二十五号|二十六号|二十七号|二十八号|二十九号|一号|十一号|十号|二十一号|二十号|三十一号|三十号|二号|三号|四号|五号|六号|七号|八号|九号|十二号|十三号|十四号|十五号|十六号|十七号|十八号|十九号|二十二号|二十三号|二十四号|二十五号|二十六号|二十七号|二十八号|二十九号|十号|二十号|三十号|10号|11号|12号|13号|14号|15号|16号|17号|18号|19号|1号|20号|21号|22号|23号|24号|25号|26号|27号|28号|29号|2号|30号|31号|3号|4号|5号|6号|7号|8号|9号|一|十一|二十一|三十一|二|三|四|五|六|七|八|九|十二|十三|十四|十五|十六|十七|十八|十九|二十二|二十三|二十四|二十五|二十六|二十七|二十八|二十九|一|十一|十|二十一|二十|三十一|三十|二|三|四|五|六|七|八|九|十二|十三|十四|十五|十六|十七|十八|十九|二十二|二十三|二十四|二十五|二十六|二十七|二十八|二十九|十|二十|三十|廿|卅)'
-    DatePeriodThisRegex = f'这个|这一个|这|这一|本'
-    DatePeriodLastRegex = f'上个|上一个|上|上一'
-    DatePeriodNextRegex = f'下个|下一个|下|下一'
+    DatePeriodRangePrefixRegex = f'(从|從)'
+    DatePeriodTillSuffixRequiredRegex = f'(?<till>[与與]|和)'
+    DatePeriodDayRegexInCJK = f'(?<day>初一|三十|一日|十一日|二十一日|三十一日|二日|三日|四日|五日|六日|七日|八日|九日|十二日|十三日|十四日|十五日|十六日|十七日|十八日|十九日|二十二日|二十三日|二十四日|二十五日|二十六日|二十七日|二十八日|二十九日|一日|十一日|十日|二十一日|二十日|三十一日|三十日|二日|三日|四日|五日|六日|七日|八日|九日|十二日|十三日|十四日|十五日|十六日|十七日|十八日|十九日|二十二日|二十三日|二十四日|二十五日|二十六日|二十七日|二十八日|二十九日|十日|二十日|三十日|10日|11日|12日|13日|14日|15日|16日|17日|18日|19日|1日|20日|21日|22日|23日|24日|25日|26日|27日|28日|29日|2日|30日|31日|3日|4日|5日|6日|7日|8日|9日|一[号號]|十一[号號]|二十一[号號]|三十一[号號]|二[号號]|三[号號]|四[号號]|五[号號]|六[号號]|七[号號]|八[号號]|九[号號]|十二[号號]|十三[号號]|十四[号號]|十五[号號]|十六[号號]|十七[号號]|十八[号號]|十九[号號]|二十二[号號]|二十三[号號]|二十四[号號]|二十五[号號]|二十六[号號]|二十七[号號]|二十八[号號]|二十九[号號]|一[号號]|十一[号號]|十[号號]|二十一[号號]|二十[号號]|三十一[号號]|三十[号號]|二[号號]|三[号號]|四[号號]|五[号號]|六[号號]|七[号號]|八[号號]|九[号號]|十二[号號]|十三[号號]|十四[号號]|十五[号號]|十六[号號]|十七[号號]|十八[号號]|十九[号號]|二十二[号號]|二十三[号號]|二十四[号號]|二十五[号號]|二十六[号號]|二十七[号號]|二十八[号號]|二十九[号號]|十[号號]|二十[号號]|三十[号號]|10[号號]|11[号號]|12[号號]|13[号號]|14[号號]|15[号號]|16[号號]|17[号號]|18[号號]|19[号號]|1[号號]|20[号號]|21[号號]|22[号號]|23[号號]|24[号號]|25[号號]|26[号號]|27[号號]|28[号號]|29[号號]|2[号號]|30[号號]|31[号號]|3[号號]|4[号號]|5[号號]|6[号號]|7[号號]|8[号號]|9[号號]|一|十一|二十一|三十一|二|三|四|五|六|七|八|九|十二|十三|十四|十五|十六|十七|十八|十九|二十二|二十三|二十四|二十五|二十六|二十七|二十八|二十九|一|十一|十|二十一|二十|三十一|三十|二|三|四|五|六|七|八|九|十二|十三|十四|十五|十六|十七|十八|十九|二十二|二十三|二十四|二十五|二十六|二十七|二十八|二十九|十|二十|三十|廿|卅)'
+    DatePeriodThisRegex = f'這一?[個个]?|这一?[個个]?|本|今'
+    DatePeriodLastRegex = f'(上一?|前一)[個个]?'
+    DatePeriodNextRegex = f'下一?[個个]?|翌'
     RelativeMonthRegex = f'(?<relmonth>({DatePeriodThisRegex}|{DatePeriodLastRegex}|{DatePeriodNextRegex})\\s*月)'
-    HalfYearRegex = f'((?<firstHalf>(上|前)半年)|(?<secondHalf>(下|后)半年))'
+    HalfYearRegex = f'((?<firstHalf>(上|前)半年)|(?<secondHalf>(下|后|後)半年))'
     YearRegex = f'(({YearNumRegex})(\\s*年)?|({SimpleYearRegex})\\s*年){HalfYearRegex}?'
     StrictYearRegex = f'({YearRegex}(?=[\\u4E00-\\u9FFF]|\\s|$|\\W))'
     YearRegexInNumber = f'(?<year>(\\d{{4}}))'
     DatePeriodYearInCJKRegex = f'{DateYearInCJKRegex}年{HalfYearRegex}?'
     MonthSuffixRegex = f'(?<msuf>({RelativeMonthRegex}|{MonthRegex}))'
-    SimpleCasesRegex = f'((从)\\s*)?(({YearRegex}|{DatePeriodYearInCJKRegex})\\s*)?{MonthSuffixRegex}({DatePeriodDayRegexInCJK}|{DayRegex})\\s*{DatePeriodTillRegex}\\s*({DatePeriodDayRegexInCJK}|{DayRegex})((\\s+|\\s*,\\s*){YearRegex})?'
-    YearAndMonth = f'({DatePeriodYearInCJKRegex}|{YearRegex}|(?<yearrel>明年|今年|去年))\\s*({MonthRegex}|的?(?<cardinal>第一|第二|第三|第四|第五|第六|第七|第八|第九|第十|第十一|第十二|最后一)\\s*个月\\s*)'
+    SimpleCasesRegex = f'((从|從)\\s*)?(({YearRegex}|{DatePeriodYearInCJKRegex})\\s*)?{MonthSuffixRegex}({DatePeriodDayRegexInCJK}|{DayRegex})\\s*{DatePeriodTillRegex}\\s*({DatePeriodDayRegexInCJK}|{DayRegex})((\\s+|\\s*,\\s*){YearRegex})?'
+    YearAndMonth = f'({DatePeriodYearInCJKRegex}|{YearRegex}|(?<yearrel>明年|今年|去年))\\s*({MonthRegex}|的?(?<cardinal>第一|第二|第三|第四|第五|第六|第七|第八|第九|第十|第十一|第十二|最[後后]一)\\s*[個个]月\\s*)'
     SimpleYearAndMonth = f'({YearNumRegex}[/\\\\\\-]{MonthNumRegex}\\b$)'
     PureNumYearAndMonth = f'({YearRegexInNumber}\\s*[-\\.\\/]\\s*{MonthNumRegex})|({MonthNumRegex}\\s*\\/\\s*{YearRegexInNumber})'
-    OneWordPeriodRegex = f'(((?<yearrel>(明|今|去)年)\\s*)?{MonthRegex}|({DatePeriodThisRegex}|{DatePeriodLastRegex}|{DatePeriodNextRegex})(?<halfTag>半)?\\s*(周末|周|月|年)|周末|(今|明|去|前|后)年(\\s*{HalfYearRegex})?)'
+    OneWordPeriodRegex = f'(((?<yearrel>(明|今|去)年)\\s*)?{MonthRegex}|({DatePeriodThisRegex}|{DatePeriodLastRegex}|{DatePeriodNextRegex})(?<halfTag>半)?\\s*(周末|周|月|年)|周末|(今|明|去|前|后|後)年(\\s*{HalfYearRegex})?)'
     LaterEarlyPeriodRegex = f'^[.]'
     DatePointWithAgoAndLater = f'^[.]'
-    WeekOfMonthRegex = f'(?<wom>{MonthSuffixRegex}的(?<cardinal>第一|第二|第三|第四|第五|最后一)\\s*周\\s*)'
-    WeekOfYearRegex = f'(?<woy>({YearRegex}|{RelativeRegex}年)的(?<cardinal>第一|第二|第三|第四|第五|最后一)\\s*周\\s*)'
+    WeekOfMonthRegex = f'(?<wom>{MonthSuffixRegex}的(?<cardinal>第一|第二|第三|第四|第五|最[后後]一)\\s*(周|星期|禮拜|礼拜)\\s*)'
+    WeekOfYearRegex = f'(?<woy>({YearRegex}|{RelativeRegex}年)的(?<cardinal>第一|第二|第三|第四|第五|最[后後]一)\\s*(周|星期|禮拜|礼拜)\\s*)'
     WeekOfDateRegex = f'^[.]'
     MonthOfDateRegex = f'^[.]'
     RestOfDateRegex = f'^[.]'
-    UnitRegex = f'(?<unit>年|(?<uoy>(个)?月|周|週|日|天))'
+    UnitRegex = f'(?<unit>年|(?<uoy>[个個]?月|周|星期|禮拜|礼拜|週|日|天))'
     FollowedUnit = f'^\\s*{UnitRegex}'
     NumberCombinedWithUnit = f'(?<num>\\d+(\\.\\d*)?){UnitRegex}'
-    DateRangePrepositions = f'((从|在|自)\\s*)?'
+    DateRangePrepositions = f'((从|從|在|自|打)\\s*)?'
     YearToYear = f'({DateRangePrepositions})({DatePeriodYearInCJKRegex}|{YearRegex})\\s*({DatePeriodTillRegex}|后|後|之后|之後)\\s*({DatePeriodYearInCJKRegex}|{YearRegex})(\\s*((之间|之内|期间|中间|间)|前|之前))?'
     YearToYearSuffixRequired = f'({DateRangePrepositions})({DatePeriodYearInCJKRegex}|{YearRegex})\\s*({DatePeriodTillSuffixRequiredRegex})\\s*({DatePeriodYearInCJKRegex}|{YearRegex})\\s*(之间|之内|期间|中间|间)'
     MonthToMonth = f'({DateRangePrepositions})({MonthRegex}){DatePeriodTillRegex}({MonthRegex})'
-    MonthToMonthSuffixRequired = f'({DateRangePrepositions})({MonthRegex}){DatePeriodTillSuffixRequiredRegex}({MonthRegex})\\s*(之间|之内|期间|中间|间)'
+    MonthToMonthSuffixRequired = f'({DateRangePrepositions})({MonthRegex}){DatePeriodTillSuffixRequiredRegex}({MonthRegex})\\s*(之[间間]|之内|期[間间]|中[間间]|间|間)'
     DayToDay = f'^[.]'
     DayRegexForPeriod = f'^[.]'
     FirstLastOfYearRegex = f'(({DatePeriodYearInCJKRegex}|{YearRegex}|(?<yearrel>明年|今年|去年))的?)((?<first>前)|(?<last>(最后|最後)))'
     ComplexDatePeriodRegex = f'^[.]'
-    PastRegex = f'(?<past>(之前|前|上|近|过去))'
-    FutureRegex = f'(?<future>(之后|之後|后|後|(?<![一两几]\\s*)下|未来(的)?))'
+    PastRegex = f'(?<past>(之前|前|上|近|[过過]去))'
+    FutureRegex = f'(?<future>(之后|之後|后|後|(?<![一两兩几幾]\\s*)下|未来(的)?))'
     SeasonRegex = f'(?<season>春|夏|秋|冬)(天|季)?'
     WhichWeekRegex = f'^[.]'
     SeasonWithYear = f'(({YearRegex}|{DatePeriodYearInCJKRegex}|(?<yearrel>明年|今年|去年))(的)?)?{SeasonRegex}'
@@ -115,22 +115,22 @@ class ChineseDateTime:
     DecadeRegexInCJK = f'(?<decade>十|一十|二十|三十|四十|五十|六十|七十|八十|九十)'
     DecadeRegex = f'(?<centurysuf>({CenturyRegex}|{CenturyRegexInCJK}|{RelativeCenturyRegex}))?(?<decade>(\\d0|{DecadeRegexInCJK}))年代'
     PrepositionRegex = f'(?<prep>^的|在$)'
-    NowRegex = f'(?<now>现在|马上|立刻|刚刚才|刚刚|刚才|这会儿|当下|此刻)'
+    NowRegex = f'(?<now>现在|現在|马上|馬上|立刻|刚刚才|剛剛才|刚刚|剛剛|刚才|剛才|这会儿|這會兒|這會|当下|當下|此刻)'
     NightRegex = f'(?<night>早|晚)'
     TimeOfSpecialDayRegex = f'(今晚|今早|今晨|明晚|明早|明晨|昨晚)(的|在)?'
     DateTimePeriodTillRegex = f'(?<till>到|直到|--|-|—|——)'
     DateTimePeriodPrepositionRegex = f'(?<prep>^\\s*的|在\\s*$)'
     BeforeAfterRegex = f'^\\b$'
     HourRegex = f'\\b{BaseDateTime.HourRegex}'
-    HourNumRegex = f'(?<hour>[零〇一二两三四五六七八九]|二十[一二三四]?|十[一二三四五六七八九]?)'
-    ZhijianRegex = f'^\\s*(之间|之内|期间|中间|间)'
-    DateTimePeriodThisRegex = f'这个|这一个|这|这一'
-    DateTimePeriodLastRegex = f'上个|上一个|上|上一'
-    DateTimePeriodNextRegex = f'下个|下一个|下|下一'
+    HourNumRegex = f'(?<hour>[零〇一二两兩三四五六七八九]|二十[一二三四]?|一?十[一二三四五六七八九]?)'
+    ZhijianRegex = f'^\\s*(之[间間]|之内|期[間间]|中[間间]|间|間)'
+    DateTimePeriodThisRegex = f'這一?[个個]?|这一?[个個]?'
+    DateTimePeriodLastRegex = f'上一?[個个]?|前一?[個个]?'
+    DateTimePeriodNextRegex = f'下一?[個个]?|次一?[個个]?'
     AmPmDescRegex = f'(?<daydesc>(am|a\\.m\\.|a m|a\\. m\\.|a\\.m|a\\. m|a m|pm|p\\.m\\.|p m|p\\. m\\.|p\\.m|p\\. m|p m|上午|中午|下午|午后|晚上|夜里|夜晚|夜间|深夜|傍晚|晚|早间?))'
-    TimeOfDayRegex = f'(?<timeOfDay>凌晨|清晨|早上|早间|早|上午|中午|下午|午后|晚上|夜里|夜晚|半夜|夜间|深夜|傍晚|晚)'
+    TimeOfDayRegex = f'(?<timeOfDay>凌晨|清晨|早上|早[间間]|早|上午|中午|下午|午[後后]|晚上|夜[里裡]|夜晚|半夜|夜[间間]|深夜|傍晚|晚)'
     SpecificTimeOfDayRegex = f'((({DateTimePeriodThisRegex}|{DateTimePeriodNextRegex}|{DateTimePeriodLastRegex})\\s+{TimeOfDayRegex})|(今晚|今早|今晨|明晚|明早|明晨|昨晚))'
-    DateTimePeriodUnitRegex = f'(个)?(?<unit>(小时|钟头|分钟|秒钟|时|分|秒))'
+    DateTimePeriodUnitRegex = f'(个)?(?<unit>(小[時时]|[钟鐘][头頭]|分[鐘钟]|秒[鐘钟]|時|时|分|秒))'
     DateTimePeriodFollowedUnit = f'^\\s*{DateTimePeriodUnitRegex}'
     DateTimePeriodNumberCombinedWithUnit = f'\\b(?<num>\\d+(\\.\\d*)?){DateTimePeriodUnitRegex}'
     DurationAllRegex = f'^[.]'
@@ -140,25 +140,25 @@ class ChineseDateTime:
     DurationDuringRegex = f'^[.]'
     DurationSomeRegex = f'^[.]'
     DurationMoreOrLessRegex = f'^[.]'
-    DurationYearRegex = f'((\\d{{3,4}})|0\\d|两千)\\s*年'
+    DurationYearRegex = f'((\\d{{3,4}})|0\\d|两千|兩千)\\s*年'
     DurationHalfSuffixRegex = f'半'
-    DurationSuffixList = dict([("M", "分钟"),
-                               ("S", "秒钟|秒"),
-                               ("H", "个小时|小时|个钟头|钟头|时"),
+    DurationSuffixList = dict([("M", "分钟|分鐘"),
+                               ("S", "秒钟|秒鐘|秒"),
+                               ("H", "个小时|個小時|小时|小時|个钟头|個鐘頭|钟头|鐘頭|时|時"),
                                ("D", "天"),
-                               ("W", "星期|个星期|周|週"),
-                               ("Mon", "个月"),
+                               ("W", "星期|个星期|個星期|周|週"),
+                               ("Mon", "个月|個月"),
                                ("Y", "年")])
-    DurationAmbiguousUnits = [r'分钟', r'秒钟', r'秒', r'个小时', r'小时', r'天', r'星期', r'个星期', r'周', r'週', r'个月', r'年', r'时']
-    DurationUnitRegex = f'(?<unit>{DateUnitRegex}|分钟?|秒钟?|个?小时|时|个?钟头|天|个?星期|周|週|个?月|年)'
+    DurationAmbiguousUnits = [r'分鐘', r'分钟', r'秒鐘', r'秒钟', r'秒', r'个小时', r'個小時', r'小時', r'小时', r'天', r'星期', r'個星期', r'个星期', r'周', r'週', r'个月', r'個月', r'年', r'时', r'時']
+    DurationUnitRegex = f'(?<unit>{DateUnitRegex}|分[鐘钟]?|秒[鐘钟]?|[個个]?小[時时]|時|时|[个個]?[鐘钟][頭头]|天|[個个]?星期|周|週|[個个]?月|年)'
     AnUnitRegex = f'^[.]'
-    DurationConnectorRegex = f'^\\s*(?<connector>[多又余零]?)\\s*$'
+    DurationConnectorRegex = f'^\\s*(?<connector>[多又余餘零]?)\\s*$'
     ConnectorRegex = f'^\\s*,\\s*$'
-    LunarHolidayRegex = f'(({YearRegex}|{DatePeriodYearInCJKRegex}|(?<yearrel>明年|今年|去年))(的)?)?(?<holiday>除夕|春节|中秋节|中秋|元宵节|端午节|端午|重阳节)'
-    HolidayRegexList1 = f'(({YearRegex}|{DatePeriodYearInCJKRegex}|(?<yearrel>明年|今年|去年))(的)?)?(?<holiday>新年|五一|劳动节|元旦节|元旦|愚人节|平安夜|圣诞节|植树节|国庆节|情人节|教师节|儿童节|妇女节|青年节|建军节|女生节|光棍节|双十一|清明节|清明)'
-    HolidayRegexList2 = f'(({YearRegex}|{DatePeriodYearInCJKRegex}|(?<yearrel>明年|今年|去年))(的)?)?(?<holiday>母亲节|父亲节|感恩节|万圣节)'
-    SetUnitRegex = f'(?<unit>年|月|周|星期|日|天|小时|时|分钟|分|秒钟|秒)'
-    SetEachUnitRegex = f'(?<each>(每个|每一|每)\\s*{SetUnitRegex})'
+    LunarHolidayRegex = f'(({YearRegex}|{DatePeriodYearInCJKRegex}|(?<yearrel>明年|今年|去年))(的)?)?(?<holiday>除夕|春[節节]|中秋[節节]?|元宵[節节]?|端午[節节]?|重阳[節节]?)'
+    HolidayRegexList1 = f'(({YearRegex}|{DatePeriodYearInCJKRegex}|(?<yearrel>明年|今年|去年))(的)?)?(?<holiday>新年|五一|[勞劳][動动][節节]|元旦[節节]?|愚人[節节]|平安夜|[聖圣耶][誕诞][節节]|植[樹树][節节]|[國国][慶庆][節节日]|情人[節节]|教[師师][節节]|[兒儿]童[節节]|[婦妇]女[節节]|青年[節节]|建[軍军][節节]|女生[節节]|光棍[節节]|[雙双]十一?|清明[節节]?)'
+    HolidayRegexList2 = f'(({YearRegex}|{DatePeriodYearInCJKRegex}|(?<yearrel>明年|今年|去年))(的)?)?(?<holiday>母[親亲][節节]|父[亲親][節节]|感恩[節节]|万圣[節节])'
+    SetUnitRegex = f'(?<unit>年|月|周|星期|日|天|小?[時时]|分[鐘钟]?|秒[鐘钟]?)'
+    SetEachUnitRegex = f'(?<each>(每[個个]|每一|每)\\s*{SetUnitRegex})'
     SetEachPrefixRegex = f'(?<each>(每)\\s*$)'
     SetEachSuffixRegex = f'^[.]'
     SetLastRegex = f'(?<last>last|this|next)'
@@ -167,66 +167,77 @@ class ChineseDateTime:
     TimeHourNumRegex = f'(00|01|02|03|04|05|06|07|08|09|0|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|1|2|3|4|5|6|7|8|9)'
     TimeMinuteNumRegex = f'(00|01|02|03|04|05|06|07|08|09|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31|32|33|34|35|36|37|38|39|40|41|42|43|44|45|46|47|48|49|50|51|52|53|54|55|56|57|58|59|0|1|2|3|4|5|6|7|8|9)'
     TimeSecondNumRegex = f'(00|01|02|03|04|05|06|07|08|09|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31|32|33|34|35|36|37|38|39|40|41|42|43|44|45|46|47|48|49|50|51|52|53|54|55|56|57|58|59|0|1|2|3|4|5|6|7|8|9)'
-    TimeHourCJKRegex = f'([零〇一二两三四五六七八九]|二十[一二三四]?|十[一二三四五六七八九]?)'
+    TimeHourCJKRegex = f'([零〇一二两兩三四五六七八九]|二十[一二三四]?|十[一二三四五六七八九]?)'
     TimeMinuteCJKRegex = f'([二三四五]?十[一二三四五六七八九]?|六十|[零〇一二三四五六七八九])'
     TimeSecondCJKRegex = f'{TimeMinuteCJKRegex}'
-    TimeClockDescRegex = f'(点\\s*整|点\\s*钟|点|时)'
-    TimeMinuteDescRegex = f'(分钟|分|)'
-    TimeSecondDescRegex = f'(秒钟|秒)'
+    TimeClockDescRegex = f'([点點]\\s*整|[點点]\\s*[钟鐘]|[點点]|[時时])'
+    TimeMinuteDescRegex = f'(分鐘|分钟|分|)'
+    TimeSecondDescRegex = f'(秒鐘|秒钟|秒)'
     TimeBanHourPrefixRegex = f'(第)'
     TimeHourRegex = f'(?<!{TimeBanHourPrefixRegex})(?<hour>{TimeHourCJKRegex}|{TimeHourNumRegex}){TimeClockDescRegex}'
     TimeMinuteRegex = f'(?<min>{TimeMinuteCJKRegex}|{TimeMinuteNumRegex}){TimeMinuteDescRegex}'
     TimeSecondRegex = f'(?<sec>{TimeSecondCJKRegex}|{TimeSecondNumRegex}){TimeSecondDescRegex}'
-    TimeHalfRegex = f'(?<half>过半|半)'
-    TimeQuarterRegex = f'(?<quarter>[一两二三四1-4])\\s*(刻钟|刻)'
-    TimeCJKTimeRegex = f'{TimeHourRegex}({TimeQuarterRegex}|{TimeHalfRegex}|((过|又)?{TimeMinuteRegex})({TimeSecondRegex})?)?'
+    TimeHalfRegex = f'(?<half>[過过]半|半)'
+    TimeQuarterRegex = f'(?<quarter>[一兩两二三四1-4])\\s*(刻[鐘钟]?)'
+    TimeCJKTimeRegex = f'{TimeHourRegex}({TimeQuarterRegex}|{TimeHalfRegex}|((过|過|又)?{TimeMinuteRegex})({TimeSecondRegex})?)?'
     TimeDigitTimeRegex = f'(?<hour>{TimeHourNumRegex}):(?<min>{TimeMinuteNumRegex})(:(?<sec>{TimeSecondNumRegex}))?'
-    TimeDayDescRegex = f'(?<daydesc>凌晨|清晨|早上|早间|早|上午|中午|下午|午后|晚上|夜里|夜晚|半夜|午夜|夜间|深夜|傍晚|晚)'
-    TimeApproximateDescPreffixRegex = f'(大[约概]|差不多|可能|也许|约|不超过|不多[于过]|最[多长少]|少于|[超短长多]过|几乎要|将近|差点|快要|接近|至少|起码|超出|不到)'
+    TimeDayDescRegex = f'(?<daydesc>凌晨|清晨|早上|早[間间]|早|上午|中午|下午|午[後后]|晚上|夜[裡里]|夜晚|半夜|午夜|夜[間间]|深夜|傍晚|晚)'
+    TimeApproximateDescPreffixRegex = f'(大[约概]|差不多|可能|也[許许]|[约約]|不超[過过]|不多[于过]|最[多长少]|少[於于]|[超短长多][過过]|[幾几]乎要|[将將]近|差[點点]|快要|接近|至少|起[碼码]|超出|不到)'
     TimeApproximateDescSuffixRegex = f'(左右)'
     TimeRegexes1 = f'{TimeApproximateDescPreffixRegex}?{TimeDayDescRegex}?{TimeCJKTimeRegex}{TimeApproximateDescSuffixRegex}?'
     TimeRegexes2 = f'{TimeApproximateDescPreffixRegex}?{TimeDayDescRegex}?{TimeDigitTimeRegex}{TimeApproximateDescSuffixRegex}?(\\s*{AmPmDescRegex}?)'
     TimeRegexes3 = f'差{TimeMinuteRegex}{TimeCJKTimeRegex}'
     TimePeriodTimePeriodConnectWords = f'(起|至|到|–|-|—|~|～)'
-    TimePeriodLeftCJKTimeRegex = f'(从)?(?<left>{TimeDayDescRegex}?({TimeCJKTimeRegex}))'
-    TimePeriodRightCJKTimeRegex = f'{TimePeriodTimePeriodConnectWords}(?<right>{TimeDayDescRegex}?{TimeCJKTimeRegex})(之间)?'
-    TimePeriodLeftDigitTimeRegex = f'(从)?(?<left>{TimeDayDescRegex}?({TimeDigitTimeRegex}))'
-    TimePeriodRightDigitTimeRegex = f'{TimePeriodTimePeriodConnectWords}(?<right>{TimeDayDescRegex}?{TimeDigitTimeRegex})(之间)?'
-    TimePeriodShortLeftCJKTimeRegex = f'(从)?(?<left>{TimeDayDescRegex}?({TimeHourCJKRegex}))'
-    TimePeriodShortLeftDigitTimeRegex = f'(从)?(?<left>{TimeDayDescRegex}?({TimeHourNumRegex}))'
+    TimePeriodLeftCJKTimeRegex = f'(从|從)?(?<left>{TimeDayDescRegex}?({TimeCJKTimeRegex}))'
+    TimePeriodRightCJKTimeRegex = f'{TimePeriodTimePeriodConnectWords}(?<right>{TimeDayDescRegex}?{TimeCJKTimeRegex})(之[間间])?'
+    TimePeriodLeftDigitTimeRegex = f'(从|從)?(?<left>{TimeDayDescRegex}?({TimeDigitTimeRegex}))'
+    TimePeriodRightDigitTimeRegex = f'{TimePeriodTimePeriodConnectWords}(?<right>{TimeDayDescRegex}?{TimeDigitTimeRegex})(之[間间])?'
+    TimePeriodShortLeftCJKTimeRegex = f'(从|從)?(?<left>{TimeDayDescRegex}?({TimeHourCJKRegex}))'
+    TimePeriodShortLeftDigitTimeRegex = f'(从|從)?(?<left>{TimeDayDescRegex}?({TimeHourNumRegex}))'
     TimePeriodRegexes1 = f'({TimePeriodLeftDigitTimeRegex}{TimePeriodRightDigitTimeRegex}|{TimePeriodLeftCJKTimeRegex}{TimePeriodRightCJKTimeRegex})'
     TimePeriodRegexes2 = f'({TimePeriodShortLeftDigitTimeRegex}{TimePeriodRightDigitTimeRegex}|{TimePeriodShortLeftCJKTimeRegex}{TimePeriodRightCJKTimeRegex})'
-    FromToRegex = f'(从|自).+([至到]).+'
-    AmbiguousRangeModifierPrefix = f'(从|自)'
+    FromToRegex = f'(從|从|自).+([至到]).+'
+    AmbiguousRangeModifierPrefix = f'(從|从|自)'
     ReferenceDatePeriodRegex = f'^[.]'
     UnspecificDatePeriodRegex = f'^[.]'
     ParserConfigurationBefore = f'((?<include>和|或|及)?(之前|以前)|前)'
     ParserConfigurationAfter = f'((?<include>和|或|及)?(之后|之後|以后|以後)|后|後)'
     ParserConfigurationUntil = f'(直到|直至|截至|截止(到)?)'
-    ParserConfigurationSincePrefix = f'(自从|自|自打|打|从)'
-    ParserConfigurationSinceSuffix = f'(以来|开始|起)'
+    ParserConfigurationSincePrefix = f'(自从|自從|自|自打|打|从|從)'
+    ParserConfigurationSinceSuffix = f'(以[來来]|[開开]始|起)'
     ParserConfigurationAroundPrefix = f'^[.]'
     ParserConfigurationAroundSuffix = f'^[.]'
-    ParserConfigurationLastWeekDayRegex = '最后一个'
-    ParserConfigurationNextMonthRegex = '下一个'
-    ParserConfigurationLastMonthRegex = '上一个'
+    ParserConfigurationLastWeekDayRegex = '最[後后]一[個个]'
+    ParserConfigurationNextMonthRegex = '下一[個个]'
+    ParserConfigurationLastMonthRegex = '上一[個个]'
     ParserConfigurationDatePrefix = ' '
     ParserConfigurationUnitMap = dict([("年", "Y"),
                                        ("月", "MON"),
                                        ("个月", "MON"),
+                                       ("個月", "MON"),
                                        ("日", "D"),
                                        ("周", "W"),
                                        ("週", "W"),
+                                       ("禮拜", "W"),
                                        ("天", "D"),
                                        ("小时", "H"),
+                                       ("小時", "H"),
                                        ("个小时", "H"),
+                                       ("個小時", "H"),
                                        ("时", "H"),
+                                       ("時", "H"),
                                        ("分钟", "M"),
+                                       ("分鐘", "M"),
                                        ("分", "M"),
                                        ("秒钟", "S"),
+                                       ("秒鐘", "S"),
                                        ("秒", "S"),
                                        ("星期", "W"),
-                                       ("个星期", "W")])
+                                       ("个星期", "W"),
+                                       ("個星期", "W"),
+                                       ("礼拜", "W"),
+                                       ("个礼拜", "W"),
+                                       ("個礼拜", "W")])
     ParserConfigurationUnitValueMap = dict([("years", 31536000),
                                             ("year", 31536000),
                                             ("months", 2592000),
@@ -249,14 +260,14 @@ class ChineseDateTime:
                                             ("secs", 1),
                                             ("sec", 1)])
     MonthTerms = [r'月']
-    WeekendTerms = [r'周末']
-    WeekTerms = [r'周', r'週', r'星期']
+    WeekendTerms = [r'周末', r'週末']
+    WeekTerms = [r'周', r'週', r'星期', r'禮拜', r'礼拜']
     YearTerms = [r'年']
     ThisYearTerms = [r'今年']
     YearToDateTerms = [r'今年迄今']
     LastYearTerms = [r'去年']
     NextYearTerms = [r'明年']
-    YearAfterNextTerms = [r'后年']
+    YearAfterNextTerms = [r'后年', r'後年']
     YearBeforeLastTerms = [r'前年']
     ParserConfigurationSeasonMap = dict([("春", "SP"),
                                          ("夏", "SU"),
@@ -277,10 +288,15 @@ class ChineseDateTime:
                                            ("4", 4),
                                            ("5", 5),
                                            ("第一个", 1),
+                                           ("第一個", 1),
                                            ("第二个", 2),
+                                           ("第二個", 2),
                                            ("第三个", 3),
+                                           ("第三個", 3),
                                            ("第四个", 4),
+                                           ("第四個", 4),
                                            ("第五个", 5),
+                                           ("第五個", 5),
                                            ("第一", 1),
                                            ("第二", 2),
                                            ("第三", 3),
@@ -457,6 +473,68 @@ class ChineseDateTime:
                                           ("二十八号", 28),
                                           ("二十九号", 29),
                                           ("三十号", 30),
+                                          ("1號", 1),
+                                          ("2號", 2),
+                                          ("3號", 3),
+                                          ("4號", 4),
+                                          ("5號", 5),
+                                          ("6號", 6),
+                                          ("7號", 7),
+                                          ("8號", 8),
+                                          ("9號", 9),
+                                          ("10號", 10),
+                                          ("11號", 11),
+                                          ("12號", 12),
+                                          ("13號", 13),
+                                          ("14號", 14),
+                                          ("15號", 15),
+                                          ("16號", 16),
+                                          ("17號", 17),
+                                          ("18號", 18),
+                                          ("19號", 19),
+                                          ("20號", 20),
+                                          ("21號", 21),
+                                          ("22號", 22),
+                                          ("23號", 23),
+                                          ("24號", 24),
+                                          ("25號", 25),
+                                          ("26號", 26),
+                                          ("27號", 27),
+                                          ("28號", 28),
+                                          ("29號", 29),
+                                          ("30號", 30),
+                                          ("31號", 31),
+                                          ("一號", 1),
+                                          ("十一號", 11),
+                                          ("二十號", 20),
+                                          ("十號", 10),
+                                          ("二十一號", 21),
+                                          ("三十一號", 31),
+                                          ("二號", 2),
+                                          ("三號", 3),
+                                          ("四號", 4),
+                                          ("五號", 5),
+                                          ("六號", 6),
+                                          ("七號", 7),
+                                          ("八號", 8),
+                                          ("九號", 9),
+                                          ("十二號", 12),
+                                          ("十三號", 13),
+                                          ("十四號", 14),
+                                          ("十五號", 15),
+                                          ("十六號", 16),
+                                          ("十七號", 17),
+                                          ("十八號", 18),
+                                          ("十九號", 19),
+                                          ("二十二號", 22),
+                                          ("二十三號", 23),
+                                          ("二十四號", 24),
+                                          ("二十五號", 25),
+                                          ("二十六號", 26),
+                                          ("二十七號", 27),
+                                          ("二十八號", 28),
+                                          ("二十九號", 29),
+                                          ("三十號", 30),
                                           ("初一", 32),
                                           ("三十", 30),
                                           ("一", 1),
@@ -587,22 +665,24 @@ class ChineseDateTime:
                                            ("大年", 13)])
     DateTimeSimpleAmRegex = f'(?<am>早|晨)'
     DateTimeSimplePmRegex = f'(?<pm>晚)'
-    DateTimePeriodMORegex = f'(凌晨|清晨|早上|早间|早|上午)'
+    DateTimePeriodMORegex = f'(凌晨|清晨|早上|早[間间]|早|上午)'
     DateTimePeriodMIRegex = f'(中午)'
-    DateTimePeriodAFRegex = f'(下午|午后|傍晚)'
-    DateTimePeriodEVRegex = f'(晚上|夜里|夜晚|晚)'
-    DateTimePeriodNIRegex = f'(半夜|夜间|深夜)'
+    DateTimePeriodAFRegex = f'(下午|午[後后]|傍晚)'
+    DateTimePeriodEVRegex = f'(晚上|夜[里裡]|夜晚|晚)'
+    DateTimePeriodNIRegex = f'(半夜|夜[間间]|深夜)'
     AmbiguityTimeFiltersDict = dict([("^[.]", "^[.]")])
     AmbiguityTimePeriodFiltersDict = dict([("^[.]", "^[.]")])
     AmbiguityDateFiltersDict = dict([("^[.]", "^[.]")])
     AmbiguityDateTimeFiltersDict = dict([("^[.]", "^[.]")])
-    AmbiguityFiltersDict = dict([("早", "(?<!今|明|日|号)早(?!上)"),
-                                 ("晚", "(?<!今|明|昨|傍|夜|日|号)晚(?!上)"),
+    AmbiguityFiltersDict = dict([("早", "(?<!今|明|日|号|號)早(?!上)"),
+                                 ("晚", "(?<!今|明|昨|傍|夜|日|号|號)晚(?!上)"),
+                                 ("^\\d{1,2}號", "^\\d{1,2}號"),
                                  ("^\\d{1,2}号", "^\\d{1,2}号"),
-                                 ("周", "周岁"),
-                                 ("今日", "今日头条"),
-                                 ("明日", "《明日之后》"),
-                                 ("时", "时间")])
+                                 ("周", "(周歲|周岁)"),
+                                 ("今日", "今日(頭條|头条)"),
+                                 ("明日", "《明日之[後后]》"),
+                                 ("时", "时间"),
+                                 ("時", "時間")])
     DurationUnitValueMap = dict([("Y", 31536000),
                                  ("Mon", 2592000),
                                  ("W", 604800),
@@ -640,11 +720,11 @@ class ChineseDateTime:
                              ("晚", 18),
                              ("pm", 12)])
     DefaultLanguageFallback = 'YMD'
-    MorningTermList = [r'早', r'上午', r'早间', r'早上', r'清晨']
-    MidDayTermList = [r'中午', r'正午']
-    AfternoonTermList = [r'下午', r'午后']
-    EveningTermList = [r'晚', r'晚上', r'夜里', r'傍晚', r'夜晚']
-    DaytimeTermList = [r'白天', r'日间']
+    MorningTermList = [r'早', r'晨', r'上午', r'早间', r'早間', r'早上', r'清晨']
+    MidDayTermList = [r'中午', r'正午', r'晌午']
+    AfternoonTermList = [r'下午', r'午后', r'午後']
+    EveningTermList = [r'晚', r'晚上', r'夜里', r'夜裡', r'傍晚', r'夜晚']
+    DaytimeTermList = [r'白天', r'日间', r'日間']
     NightTermList = [r'深夜']
     DynastyYearMap = dict([("贞观", 627),
                            ("开元", 713),
@@ -668,5 +748,18 @@ class ChineseDateTime:
                            ("同治", 1862),
                            ("光绪", 1875),
                            ("宣统", 1909),
-                           ("民国", 1912)])
+                           ("民国", 1912),
+                           ("貞觀", 627),
+                           ("開元", 713),
+                           ("神龍", 705),
+                           ("永樂", 1403),
+                           ("天順", 1457),
+                           ("萬歷", 1573),
+                           ("崇禎", 1628),
+                           ("順治", 1644),
+                           ("嘉慶", 1796),
+                           ("咸豐", 1851),
+                           ("光緒", 1875),
+                           ("宣統", 1909),
+                           ("民國", 1912)])
 # pylint: enable=line-too-long
