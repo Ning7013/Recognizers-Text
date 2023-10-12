@@ -32,6 +32,8 @@ class ChineseDateTimePeriodParser(BaseDateTimePeriodParser):
             ChineseDateTime.DateTimePeriodEVRegex)
         self.tni_regex = RegExpUtility.get_safe_reg_exp(
             ChineseDateTime.DateTimePeriodNIRegex)
+        self.don_regex = RegExpUtility.get_safe_reg_exp(
+            ChineseDateTime.DateTimePeriodMNRegex)
         self.unit_regex = RegExpUtility.get_safe_reg_exp(
             ChineseDateTime.DateTimePeriodUnitRegex)
         self.time_of_day_regex = RegExpUtility.get_safe_reg_exp(
@@ -233,7 +235,7 @@ class ChineseDateTimePeriodParser(BaseDateTimePeriodParser):
     def parse_specific_time_of_day(self, source: str, reference: datetime) -> DateTimeResolutionResult:
         result = DateTimeResolutionResult()
         trimmed_source = source.strip()
-        begin_hour = end_hour = end_min = 0
+        begin_hour = begin_min = end_hour = end_min = 0
 
         # Handle 昨晚，今晨
         if RegExpUtility.is_exact_match(self.config.specific_time_of_day_regex, trimmed_source, True):
@@ -280,6 +282,10 @@ class ChineseDateTimePeriodParser(BaseDateTimePeriodParser):
             begin_hour = 20
             end_hour = 23
             end_min = 59
+        elif regex.search(self.don_regex, source):
+            time_str = 'DON'
+            begin_hour = 0
+            end_hour = 4
         else:
             return result
 

@@ -16,3 +16,4 @@ Python/.cache/v/cache/lastfailed
 /Python/venv
 /Tools/.vs/Microsoft.Recognizers.Text.Validation/v16
 Python/tests/runner.py
+Python/samples/simple_console/sample.py

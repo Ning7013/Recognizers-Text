@@ -1076,6 +1076,10 @@ class TimexUtil:
             result.begin_hour = 20
             result.end_hour = 23
             result.end_min = 59
+        elif tod == Constants.MIDNIGHT:
+            result.timex = Constants.MIDNIGHT
+            result.begin_hour = 0
+            result.end_hour = 4
         elif tod == Constants.MEALTIME_BREAKFAST:
             result.timex = Constants.MEALTIME_BREAKFAST
             result.begin_hour = 8

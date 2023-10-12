@@ -128,7 +128,7 @@ class ChineseDateTime:
     DateTimePeriodLastRegex = f'上一?[個个]?|前一?[個个]?'
     DateTimePeriodNextRegex = f'下一?[個个]?|次一?[個个]?'
     AmPmDescRegex = f'(?<daydesc>(am|a\\.m\\.|a m|a\\. m\\.|a\\.m|a\\. m|a m|pm|p\\.m\\.|p m|p\\. m\\.|p\\.m|p\\. m|p m|上午|中午|下午|午后|晚上|夜里|夜晚|夜间|深夜|傍晚|晚|早间?))'
-    TimeOfDayRegex = f'(?<timeOfDay>凌晨|清晨|早上|早[间間]|早|上午|中午|下午|午[後后]|晚上|夜[里裡]|夜晚|半夜|夜[间間]|深夜|傍晚|晚)'
+    TimeOfDayRegex = f'(?<timeOfDay>凌晨|清晨|早上|早[间間]|早|上午|中午|下午|午[後后]|晚上|夜[里裡]|夜晚|半夜|午夜|子夜|夜[间間]|深夜|傍晚|晚)'
     SpecificTimeOfDayRegex = f'((({DateTimePeriodThisRegex}|{DateTimePeriodNextRegex}|{DateTimePeriodLastRegex})\\s+{TimeOfDayRegex})|(今晚|今早|今晨|明晚|明早|明晨|昨晚))'
     DateTimePeriodUnitRegex = f'(个)?(?<unit>(小[時时]|[钟鐘][头頭]|分[鐘钟]|秒[鐘钟]|時|时|分|秒))'
     DateTimePeriodFollowedUnit = f'^\\s*{DateTimePeriodUnitRegex}'
@@ -667,9 +667,10 @@ class ChineseDateTime:
     DateTimeSimplePmRegex = f'(?<pm>晚)'
     DateTimePeriodMORegex = f'(凌晨|清晨|早上|早[間间]|早|上午)'
     DateTimePeriodMIRegex = f'(中午)'
-    DateTimePeriodAFRegex = f'(下午|午[後后]|傍晚)'
-    DateTimePeriodEVRegex = f'(晚上|夜[里裡]|夜晚|晚)'
-    DateTimePeriodNIRegex = f'(半夜|夜[間间]|深夜)'
+    DateTimePeriodAFRegex = f'(下午|午後|午后)'
+    DateTimePeriodEVRegex = f'(傍晚|黃昏)'
+    DateTimePeriodNIRegex = f'(夜間|夜间|晚上|夜里|夜裡|夜晚|晚)'
+    DateTimePeriodMNRegex = f'(半夜|深夜|子夜|午夜)'
     AmbiguityTimeFiltersDict = dict([("^[.]", "^[.]")])
     AmbiguityTimePeriodFiltersDict = dict([("^[.]", "^[.]")])
     AmbiguityDateFiltersDict = dict([("^[.]", "^[.]")])
@@ -712,20 +713,24 @@ class ChineseDateTime:
                              ("下午", 12),
                              ("午后", 12),
                              ("晚上", 18),
-                             ("夜里", 18),
-                             ("夜晚", 18),
-                             ("夜间", 18),
-                             ("深夜", 18),
-                             ("傍晚", 18),
+                             ("夜里", 19),
+                             ("夜晚", 19),
+                             ("夜间", 19),
+                             ("深夜", 22),
+                             ("午夜", 22),
+                             ("半夜", 22),
+                             ("夜半", 22),
+                             ("傍晚", 16),
                              ("晚", 18),
                              ("pm", 12)])
     DefaultLanguageFallback = 'YMD'
     MorningTermList = [r'早', r'晨', r'上午', r'早间', r'早間', r'早上', r'清晨']
     MidDayTermList = [r'中午', r'正午', r'晌午']
     AfternoonTermList = [r'下午', r'午后', r'午後']
-    EveningTermList = [r'晚', r'晚上', r'夜里', r'夜裡', r'傍晚', r'夜晚']
+    EveningTermList = [r'黃昏', r'傍晚']
     DaytimeTermList = [r'白天', r'日间', r'日間']
-    NightTermList = [r'深夜']
+    NightTermList = [r'晚', r'晚上', r'夜里', r'夜裡', r'傍晚', r'夜晚']
+    DeadOfNightTermList = [r'深夜', r'午夜', r'子夜', r'半夜', r'夜半']
     DynastyYearMap = dict([("贞观", 627),
                            ("开元", 713),
                            ("神龙", 705),

@@ -215,6 +215,11 @@ class ChineseDateTimePeriodParserConfiguration(DateTimePeriodParserConfiguration
             time_str = 'TEV'
             begin_hour = 16
             end_hour = 20
+        elif trimmed_source in ['半夜', '午夜', '深夜']:
+            swift = 1
+            time_str = 'DON'
+            begin_hour = 0
+            end_hour = 4
         else:
             time_str = None
             return MatchedTimeRange(time_str, begin_hour, end_hour, end_min, False, swift)
