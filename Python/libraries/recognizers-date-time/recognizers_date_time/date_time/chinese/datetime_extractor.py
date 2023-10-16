@@ -116,7 +116,7 @@ class ChineseDateTimeExtractor(BaseDateTimeExtractor):
         for er in duration_er:
             pos = er.start + er.length
             if pos < len(source):
-                suffix = source[pos]
+                suffix = source[pos:]
                 before_match = RegExpUtility.get_matches(self.before_regex, suffix)
                 after_match = RegExpUtility.get_matches(self.after_regex, suffix)
 

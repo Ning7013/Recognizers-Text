@@ -46,15 +46,15 @@ class ChineseDateTime:
     SpecialDayWithNumRegex = f'^[.]'
     WeekDayOfMonthRegex = f'((({MonthRegex}|{MonthNumRegex})的\\s*)(?<cardinal>(第一|第二|第三|第四|第五|最[后後]一)[个個])\\s*{WeekDayRegex})'
     WeekDayAndDayRegex = f'^[.]'
-    ThisPrefixRegex = f'這一?[个個]?|这一?[个個]?|本|今'
-    LastPrefixRegex = f'上一?[个個]?|去|前一'
-    NextPrefixRegex = f'次一?[个個]?|下一?[个個]?|明|來|翌'
+    ThisPrefixRegex = f'(這一?[个個]?|这一?[个個]?|本|今)'
+    LastPrefixRegex = f'(上一?[个個]?|去|前一)'
+    NextPrefixRegex = f'(次一?[个個]?|下一?[个個]?|明|來|翌)'
     RelativeRegex = f'(?<order>({ThisPrefixRegex}|{LastPrefixRegex}|{NextPrefixRegex}))'
     SpecialDate = f'(?<thisyear>({ThisPrefixRegex}|{LastPrefixRegex}|{NextPrefixRegex})年)?(?<thismonth>({ThisPrefixRegex}|{LastPrefixRegex}|{NextPrefixRegex})月)?{DateDayRegexInCJK}'
     DateUnitRegex = f'(?<unit>年|[个個]月|周|週|[个個][禮礼]拜|[个個]星期|日|天)'
-    BeforeRegex = f'以前|之前|前'
-    AfterRegex = f'以后|以後|之后|之後|后|後|[还還]剩'
-    TimePeriodLeftRegex = f'还剩|還剩'
+    BeforeRegex = f'(以前|之前|前)'
+    AfterRegex = f'(以后|以後|之后|之後|后|後|[还還]剩)'
+    TimePeriodLeftRegex = f'(还剩|還剩)'
     DateRegexList1 = f'({LunarRegex}(\\s*))?((({SimpleYearRegex}|{DateYearInCJKRegex})年)(\\s*))?{MonthRegex}(\\s*){DateDayRegexInCJK}((\\s*|,|，){WeekDayRegex})?'
     DateRegexList2 = f'((({SimpleYearRegex}|{DateYearInCJKRegex})年)(\\s*))?({LunarRegex}(\\s*))?{MonthRegex}(\\s*){DateDayRegexInCJK}((\\s*|,|，){WeekDayRegex})?'
     DateRegexList3 = f'((({SimpleYearRegex}|{DateYearInCJKRegex})年)(\\s*))?({LunarRegex}(\\s*))?{MonthRegex}(\\s*)({DayRegexNumInCJK}|{DayRegex})((\\s*|,|，){WeekDayRegex})?'
@@ -124,9 +124,9 @@ class ChineseDateTime:
     HourRegex = f'\\b{BaseDateTime.HourRegex}'
     HourNumRegex = f'(?<hour>[零〇一二两兩三四五六七八九]|二十[一二三四]?|一?十[一二三四五六七八九]?)'
     ZhijianRegex = f'^\\s*(之[间間]|之内|期[間间]|中[間间]|间|間)'
-    DateTimePeriodThisRegex = f'這一?[个個]?|这一?[个個]?'
-    DateTimePeriodLastRegex = f'上一?[個个]?|前一?[個个]?'
-    DateTimePeriodNextRegex = f'下一?[個个]?|次一?[個个]?'
+    DateTimePeriodThisRegex = f'(這一?[个個]?|这一?[个個]?)'
+    DateTimePeriodLastRegex = f'(上一?[個个]?|前一?[個个]?)'
+    DateTimePeriodNextRegex = f'(下一?[個个]?|次一?[個个]?)'
     AmPmDescRegex = f'(?<daydesc>(am|a\\.m\\.|a m|a\\. m\\.|a\\.m|a\\. m|a m|pm|p\\.m\\.|p m|p\\. m\\.|p\\.m|p\\. m|p m|上午|中午|下午|午后|晚上|夜里|夜晚|夜间|夜間|深夜|傍晚|晚|早[間间]?))'
     TimeOfDayRegex = f'(?<timeOfDay>凌晨|清晨|早上|早[间間]|早|上午|中午|下午|午[後后]|晚上|夜[里裡]|夜晚|半夜|午夜|子夜|夜[间間]|深夜|傍晚|晚)'
     SpecificTimeOfDayRegex = f'((({DateTimePeriodThisRegex}|{DateTimePeriodNextRegex}|{DateTimePeriodLastRegex})\\s+{TimeOfDayRegex})|(今晚|今早|今晨|明晚|明早|明晨|昨晚))'
@@ -142,12 +142,12 @@ class ChineseDateTime:
     DurationMoreOrLessRegex = f'^[.]'
     DurationYearRegex = f'((\\d{{3,4}})|0\\d|两千|兩千)\\s*年'
     DurationHalfSuffixRegex = f'半'
-    DurationSuffixList = dict([("M", "分钟|分鐘"),
-                               ("S", "秒钟|秒鐘|秒"),
-                               ("H", "个小时|個小時|小时|小時|个钟头|個鐘頭|钟头|鐘頭|时|時"),
+    DurationSuffixList = dict([("M", "(分钟|分鐘)"),
+                               ("S", "(秒钟|秒鐘|秒)"),
+                               ("H", "(个小时|個小時|小时|小時|个钟头|個鐘頭|钟头|鐘頭|时|時)"),
                                ("D", "天"),
-                               ("W", "星期|个星期|個星期|周|週"),
-                               ("Mon", "个月|個月"),
+                               ("W", "(星期|个星期|個星期|周|週)"),
+                               ("Mon", "(个月|個月)"),
                                ("Y", "年")])
     DurationAmbiguousUnits = [r'分鐘', r'分钟', r'秒鐘', r'秒钟', r'秒', r'个小时', r'個小時', r'小時', r'小时', r'天', r'星期', r'個星期', r'个星期', r'周', r'週', r'个月', r'個月', r'年', r'时', r'時']
     DurationUnitRegex = f'(?<unit>{DateUnitRegex}|分[鐘钟]?|秒[鐘钟]?|[個个]?小[時时]|時|时|[个個]?[鐘钟][頭头]|天|[個个]?星期|周|週|[個个]?月|年)'
@@ -182,7 +182,7 @@ class ChineseDateTime:
     TimeCJKTimeRegex = f'{TimeHourRegex}({TimeQuarterRegex}|{TimeHalfRegex}|((过|過|又)?{TimeMinuteRegex})({TimeSecondRegex})?)?'
     TimeDigitTimeRegex = f'(?<hour>{TimeHourNumRegex}):(?<min>{TimeMinuteNumRegex})(:(?<sec>{TimeSecondNumRegex}))?'
     TimeDayDescRegex = f'(?<daydesc>凌晨|清晨|早上|早[間间]|早|上午|中午|下午|午[後后]|晚上|夜[裡里]|夜晚|半夜|午夜|夜[間间]|深夜|傍晚|晚)'
-    TimeApproximateDescPreffixRegex = f'(大[约概]|差不多|可能|也[許许]|[约約]|不超[過过]|不多[于过]|最[多长少]|少[於于]|[超短长多][過过]|[幾几]乎要|[将將]近|差[點点]|快要|接近|至少|起[碼码]|超出|不到)'
+    TimeApproximateDescPreffixRegex = f'(大[约概]|差不多|可能|也[許许]|[约約]|不超[過过]|不多[于於]|最[多长少]|少[於于]|[超短长多][過过]|[幾几]乎要|[将將]近|差[點点]|快要|接近|至少|起[碼码]|超出|不到)'
     TimeApproximateDescSuffixRegex = f'(左右)'
     TimeRegexes1 = f'{TimeApproximateDescPreffixRegex}?{TimeDayDescRegex}?{TimeCJKTimeRegex}{TimeApproximateDescSuffixRegex}?'
     TimeRegexes2 = f'{TimeApproximateDescPreffixRegex}?{TimeDayDescRegex}?{TimeDigitTimeRegex}{TimeApproximateDescSuffixRegex}?(\\s*{AmPmDescRegex}?)'
