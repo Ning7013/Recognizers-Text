@@ -309,7 +309,7 @@ SpecificTimeOfDayRegex: !nestedRegex
   def: ((({DateTimePeriodThisRegex}|{DateTimePeriodNextRegex}|{DateTimePeriodLastRegex})\s+{TimeOfDayRegex})|(今晚|今早|今晨|明晚|明早|明晨|昨晚))
   references: [DateTimePeriodThisRegex, DateTimePeriodNextRegex, DateTimePeriodLastRegex, TimeOfDayRegex]
 DateTimePeriodUnitRegex: !simpleRegex
-  def: (个)?(?<unit>(小[時时]|[钟鐘][头頭]|分[鐘钟]|秒[鐘钟]|時|时|分|秒))
+  def: (个|個)?(?<unit>(小時|小时|钟头|鐘頭|分鐘|分钟|秒鐘|秒钟|時|时|分|秒))
 DateTimePeriodFollowedUnit: !nestedRegex
   def: ^\s*{DateTimePeriodUnitRegex}
   references: [DateTimePeriodUnitRegex]
@@ -345,7 +345,7 @@ DurationHalfSuffixRegex: !simpleRegex
 DurationSuffixList: !dictionary
   types: [string, string]
   entries:
-    M: (分钟|分鐘)
+    M: (分钟|分鐘|分)
     S: (秒钟|秒鐘|秒)
     H: (个小时|個小時|小时|小時|个钟头|個鐘頭|钟头|鐘頭|时|時)
     D: 天
@@ -355,6 +355,7 @@ DurationSuffixList: !dictionary
 DurationAmbiguousUnits: !list
   types: [string]
   entries:
+    - 分
     - 分鐘
     - 分钟
     - 秒鐘
@@ -376,7 +377,7 @@ DurationAmbiguousUnits: !list
     - 时
     - 時
 DurationUnitRegex: !nestedRegex
-  def: (?<unit>{DateUnitRegex}|分[鐘钟]?|秒[鐘钟]?|[個个]?小[時时]|時|时|[个個]?[鐘钟][頭头]|天|[個个]?星期|周|週|[個个]?月|年)
+  def: (?<unit>{DateUnitRegex}|分|分鐘|分钟?|秒|秒鐘|秒钟|[個个]?小[時时]|時|时|[个個]?[鐘钟][頭头]|天|[個个]?星期|周|週|[個个]?月|年)
   references: [DateUnitRegex]
 AnUnitRegex: !simpleRegex
   def: ^[.]
@@ -395,7 +396,7 @@ HolidayRegexList2: !nestedRegex
   references: [YearRegex, DatePeriodYearInCJKRegex]
 #SetExtractorCJK
 SetUnitRegex: !simpleRegex
-  def: (?<unit>年|月|周|星期|日|天|小?[時时]|分[鐘钟]?|秒[鐘钟]?)
+  def: (?<unit>年|月|周|星期|日|天|小?[時时]|分|分鐘|分钟|秒|秒鐘|秒钟)
 SetEachUnitRegex: !nestedRegex
   def: (?<each>(每[個个]|每一|每)\s*{SetUnitRegex})
   references: [SetUnitRegex]

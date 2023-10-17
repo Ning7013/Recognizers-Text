@@ -130,7 +130,7 @@ class ChineseDateTime:
     AmPmDescRegex = f'(?<daydesc>(am|a\\.m\\.|a m|a\\. m\\.|a\\.m|a\\. m|a m|pm|p\\.m\\.|p m|p\\. m\\.|p\\.m|p\\. m|p m|上午|中午|下午|午后|晚上|夜里|夜晚|夜间|夜間|深夜|傍晚|晚|早[間间]?))'
     TimeOfDayRegex = f'(?<timeOfDay>凌晨|清晨|早上|早[间間]|早|上午|中午|下午|午[後后]|晚上|夜[里裡]|夜晚|半夜|午夜|子夜|夜[间間]|深夜|傍晚|晚)'
     SpecificTimeOfDayRegex = f'((({DateTimePeriodThisRegex}|{DateTimePeriodNextRegex}|{DateTimePeriodLastRegex})\\s+{TimeOfDayRegex})|(今晚|今早|今晨|明晚|明早|明晨|昨晚))'
-    DateTimePeriodUnitRegex = f'(个)?(?<unit>(小[時时]|[钟鐘][头頭]|分[鐘钟]|秒[鐘钟]|時|时|分|秒))'
+    DateTimePeriodUnitRegex = f'(个|個)?(?<unit>(小時|小时|钟头|鐘頭|分鐘|分钟|秒鐘|秒钟|時|时|分|秒))'
     DateTimePeriodFollowedUnit = f'^\\s*{DateTimePeriodUnitRegex}'
     DateTimePeriodNumberCombinedWithUnit = f'\\b(?<num>\\d+(\\.\\d*)?){DateTimePeriodUnitRegex}'
     DurationAllRegex = f'^[.]'
@@ -142,22 +142,22 @@ class ChineseDateTime:
     DurationMoreOrLessRegex = f'^[.]'
     DurationYearRegex = f'((\\d{{3,4}})|0\\d|两千|兩千)\\s*年'
     DurationHalfSuffixRegex = f'半'
-    DurationSuffixList = dict([("M", "(分钟|分鐘)"),
+    DurationSuffixList = dict([("M", "(分钟|分鐘|分)"),
                                ("S", "(秒钟|秒鐘|秒)"),
                                ("H", "(个小时|個小時|小时|小時|个钟头|個鐘頭|钟头|鐘頭|时|時)"),
                                ("D", "天"),
                                ("W", "(星期|个星期|個星期|周|週)"),
                                ("Mon", "(个月|個月)"),
                                ("Y", "年")])
-    DurationAmbiguousUnits = [r'分鐘', r'分钟', r'秒鐘', r'秒钟', r'秒', r'个小时', r'個小時', r'小時', r'小时', r'天', r'星期', r'個星期', r'个星期', r'周', r'週', r'个月', r'個月', r'年', r'时', r'時']
-    DurationUnitRegex = f'(?<unit>{DateUnitRegex}|分[鐘钟]?|秒[鐘钟]?|[個个]?小[時时]|時|时|[个個]?[鐘钟][頭头]|天|[個个]?星期|周|週|[個个]?月|年)'
+    DurationAmbiguousUnits = [r'分', r'分鐘', r'分钟', r'秒鐘', r'秒钟', r'秒', r'个小时', r'個小時', r'小時', r'小时', r'天', r'星期', r'個星期', r'个星期', r'周', r'週', r'个月', r'個月', r'年', r'时', r'時']
+    DurationUnitRegex = f'(?<unit>{DateUnitRegex}|分|分鐘|分钟?|秒|秒鐘|秒钟|[個个]?小[時时]|時|时|[个個]?[鐘钟][頭头]|天|[個个]?星期|周|週|[個个]?月|年)'
     AnUnitRegex = f'^[.]'
     DurationConnectorRegex = f'^\\s*(?<connector>[多又余餘零]?)\\s*$'
     ConnectorRegex = f'^\\s*,\\s*$'
     LunarHolidayRegex = f'(({YearRegex}|{DatePeriodYearInCJKRegex}|(?<yearrel>明年|今年|去年))(的)?)?(?<holiday>除夕|春[節节]|中秋[節节]?|元宵[節节]?|端午[節节]?|重阳[節节]?)'
     HolidayRegexList1 = f'(({YearRegex}|{DatePeriodYearInCJKRegex}|(?<yearrel>明年|今年|去年))(的)?)?(?<holiday>新年|五一|[勞劳][動动][節节]|元旦[節节]?|愚人[節节]|平安夜|[聖圣耶][誕诞][節节]|植[樹树][節节]|[國国][慶庆][節节日]|情人[節节]|教[師师][節节]|[兒儿]童[節节]|[婦妇]女[節节]|青年[節节]|建[軍军][節节]|女生[節节]|光棍[節节]|[雙双]十一?|清明[節节]?)'
     HolidayRegexList2 = f'(({YearRegex}|{DatePeriodYearInCJKRegex}|(?<yearrel>明年|今年|去年))(的)?)?(?<holiday>母[親亲][節节]|父[亲親][節节]|感恩[節节]|万圣[節节])'
-    SetUnitRegex = f'(?<unit>年|月|周|星期|日|天|小?[時时]|分[鐘钟]?|秒[鐘钟]?)'
+    SetUnitRegex = f'(?<unit>年|月|周|星期|日|天|小?[時时]|分|分鐘|分钟|秒|秒鐘|秒钟)'
     SetEachUnitRegex = f'(?<each>(每[個个]|每一|每)\\s*{SetUnitRegex})'
     SetEachPrefixRegex = f'(?<each>(每)\\s*$)'
     SetEachSuffixRegex = f'^[.]'

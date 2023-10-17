@@ -52,7 +52,7 @@ class ChineseDateExtractor(BaseDateExtractor):
                             or (after_match and suffix.startswith(after_match[0])):
                         meta_data = MetaData()
                         meta_data.is_duration_with_ago_and_later = True
-                        ret.append(Token(er.start, pos + 1, meta_data))
+                        ret.append(Token(er.start, pos + (len(before_match[0]) if before_match[0] else len(after_match[0])), meta_data))
 
         return ret
 
