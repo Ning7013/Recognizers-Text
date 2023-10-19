@@ -708,6 +708,7 @@ class ChineseDateTime:
                                  ("九", 9),
                                  ("〇", 0),
                                  ("两", 2),
+                                 ("兩", 2),
                                  ("十", 10)])
     TimeLowBoundDesc = dict([("中午", 11),
                              ("下午", 12),
