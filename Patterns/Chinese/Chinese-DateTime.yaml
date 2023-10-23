@@ -111,7 +111,7 @@ DateRegexList2: !nestedRegex
   references: [MonthRegex, DateDayRegexInCJK, SimpleYearRegex, LunarRegex, WeekDayRegex, DateYearInCJKRegex]
 # (2015年)?(农历)?十月二十(星期三)?
 DateRegexList3: !nestedRegex
-  def: ((({SimpleYearRegex}|{DateYearInCJKRegex})年)(\s*))?({LunarRegex}(\s*))?{MonthRegex}(\s*)({DayRegexNumInCJK}|{DayRegex})((\s*|,|，){WeekDayRegex})?
+  def: ((({SimpleYearRegex}|{DateYearInCJKRegex})年)(\s*))?({LunarRegex}(\s*))?{MonthRegex}(\s*)({DayRegexNumInCJK}|{DayRegex})?((\s*|,|，){WeekDayRegex})?
   references: [MonthRegex, DayRegexNumInCJK, SimpleYearRegex, LunarRegex, WeekDayRegex, DateYearInCJKRegex, DayRegex]
 # 7/23
 DateRegexList4: !nestedRegex
@@ -131,9 +131,9 @@ DateRegexList7: !nestedRegex
   references: [DayRegex, MonthNumRegex, SimpleYearRegex]
 # 2015-12-23 - This regex represents the standard format in CJK dates (YMD) and has precedence over other orderings
 DateRegexList8: !nestedRegex
-  def: '{SimpleYearRegex}\s*[/\\\-\. ]\s*{MonthNumRegex}\s*[/\\\-\. ]\s*{DayRegex}'
+  def: '{SimpleYearRegex}\s*[/\\\-\. ]\s*{MonthNumRegex}\s*[/\\\-\. ]\s*{DayRegex}?'
   references: [SimpleYearRegex, MonthNumRegex, DayRegex]
-# Note that these "Till" connector can be used without any suffix like "之间|之内|期间|中间|间"
+# Note that these "Till" connector can be used without any suffix like "之间|之[內内]|期间|中间|间"
 # DatePeriodExtractorCJK
 DatePeriodTillRegex: !simpleRegex
   def: (?<till>到|至|--|-|—|——|~|–)
@@ -143,9 +143,9 @@ DatePeriodRangeSuffixRegex: !simpleRegex
 DatePeriodRangePrefixRegex: !simpleRegex
   def: (从|從)
 # DatePeriodExtractorCJK
-# Note that these "Till" connector can only be used with some suffix like "之间|之内|期间|中间|间"
+# Note that these "Till" connector can only be used with some suffix like "之间|之[內内]|期间|中间|间"
 DatePeriodTillSuffixRequiredRegex: !simpleRegex
-  def: (?<till>[与與]|和)
+  def: (?<till>与|與|和)
 DatePeriodDayRegexInCJK: !simpleRegex
   def: (?<day>初一|三十|一日|十一日|二十一日|三十一日|二日|三日|四日|五日|六日|七日|八日|九日|十二日|十三日|十四日|十五日|十六日|十七日|十八日|十九日|二十二日|二十三日|二十四日|二十五日|二十六日|二十七日|二十八日|二十九日|一日|十一日|十日|二十一日|二十日|三十一日|三十日|二日|三日|四日|五日|六日|七日|八日|九日|十二日|十三日|十四日|十五日|十六日|十七日|十八日|十九日|二十二日|二十三日|二十四日|二十五日|二十六日|二十七日|二十八日|二十九日|十日|二十日|三十日|10日|11日|12日|13日|14日|15日|16日|17日|18日|19日|1日|20日|21日|22日|23日|24日|25日|26日|27日|28日|29日|2日|30日|31日|3日|4日|5日|6日|7日|8日|9日|一[号號]|十一[号號]|二十一[号號]|三十一[号號]|二[号號]|三[号號]|四[号號]|五[号號]|六[号號]|七[号號]|八[号號]|九[号號]|十二[号號]|十三[号號]|十四[号號]|十五[号號]|十六[号號]|十七[号號]|十八[号號]|十九[号號]|二十二[号號]|二十三[号號]|二十四[号號]|二十五[号號]|二十六[号號]|二十七[号號]|二十八[号號]|二十九[号號]|一[号號]|十一[号號]|十[号號]|二十一[号號]|二十[号號]|三十一[号號]|三十[号號]|二[号號]|三[号號]|四[号號]|五[号號]|六[号號]|七[号號]|八[号號]|九[号號]|十二[号號]|十三[号號]|十四[号號]|十五[号號]|十六[号號]|十七[号號]|十八[号號]|十九[号號]|二十二[号號]|二十三[号號]|二十四[号號]|二十五[号號]|二十六[号號]|二十七[号號]|二十八[号號]|二十九[号號]|十[号號]|二十[号號]|三十[号號]|10[号號]|11[号號]|12[号號]|13[号號]|14[号號]|15[号號]|16[号號]|17[号號]|18[号號]|19[号號]|1[号號]|20[号號]|21[号號]|22[号號]|23[号號]|24[号號]|25[号號]|26[号號]|27[号號]|28[号號]|29[号號]|2[号號]|30[号號]|31[号號]|3[号號]|4[号號]|5[号號]|6[号號]|7[号號]|8[号號]|9[号號]|一|十一|二十一|三十一|二|三|四|五|六|七|八|九|十二|十三|十四|十五|十六|十七|十八|十九|二十二|二十三|二十四|二十五|二十六|二十七|二十八|二十九|一|十一|十|二十一|二十|三十一|三十|二|三|四|五|六|七|八|九|十二|十三|十四|十五|十六|十七|十八|十九|二十二|二十三|二十四|二十五|二十六|二十七|二十八|二十九|十|二十|三十|廿|卅)
 DatePeriodThisRegex: !simpleRegex
@@ -219,16 +219,16 @@ NumberCombinedWithUnit: !nestedRegex
 DateRangePrepositions: !simpleRegex
   def: ((从|從|在|自|打)\s*)?
 YearToYear: !nestedRegex
-  def: ({DateRangePrepositions})({DatePeriodYearInCJKRegex}|{YearRegex})\s*({DatePeriodTillRegex}|后|後|之后|之後)\s*({DatePeriodYearInCJKRegex}|{YearRegex})(\s*((之[间間]|之内|期[间間]|中[间間]|间|間)|前|之前))?
+  def: ({DateRangePrepositions})({DatePeriodYearInCJKRegex}|{YearRegex})\s*({DatePeriodTillRegex}|后|後|之后|之後)\s*({DatePeriodYearInCJKRegex}|{YearRegex})(\s*((之[间間]|之[內内]|期[间間]|中[间間]|间|間)|前|之前))?
   references: [DatePeriodYearInCJKRegex, YearRegex, DatePeriodTillRegex, DateRangePrepositions]
 YearToYearSuffixRequired: !nestedRegex
-  def: ({DateRangePrepositions})({DatePeriodYearInCJKRegex}|{YearRegex})\s*({DatePeriodTillSuffixRequiredRegex})\s*({DatePeriodYearInCJKRegex}|{YearRegex})\s*(之[间間]|之内|期[间間]|中[间間]|间|間)
+  def: ({DateRangePrepositions})({DatePeriodYearInCJKRegex}|{YearRegex})\s*({DatePeriodTillSuffixRequiredRegex})\s*({DatePeriodYearInCJKRegex}|{YearRegex})\s*(之[间間]|之[內内]|期[间間]|中[间間]|间|間)
   references: [DatePeriodYearInCJKRegex, YearRegex, DatePeriodTillSuffixRequiredRegex, DateRangePrepositions]
 MonthToMonth: !nestedRegex
   def: ({DateRangePrepositions})({MonthRegex}){DatePeriodTillRegex}({MonthRegex})
   references: [MonthRegex, DatePeriodTillRegex, DateRangePrepositions]
 MonthToMonthSuffixRequired: !nestedRegex
-  def: ({DateRangePrepositions})({MonthRegex}){DatePeriodTillSuffixRequiredRegex}({MonthRegex})\s*(之[间間]|之内|期[間间]|中[間间]|间|間)
+  def: ({DateRangePrepositions})({MonthRegex}){DatePeriodTillSuffixRequiredRegex}({MonthRegex})\s*(之[间間]|之[內内]|期[間间]|中[間间]|间|間)
   references: [MonthRegex, DatePeriodTillSuffixRequiredRegex, DateRangePrepositions]
 DayToDay: !simpleRegex
   # TODO: modify below regex according to the counterpart in Japanese
@@ -294,7 +294,7 @@ HourRegex: !nestedRegex
 HourNumRegex: !simpleRegex
   def: (?<hour>[零〇一二两兩三四五六七八九]|二十[一二三四]?|一?十[一二三四五六七八九]?)
 ZhijianRegex: !simpleRegex
-  def: ^\s*(之[间間]|之内|期[間间]|中[間间]|间|間)
+  def: ^\s*(之[间間]|之[內内]|期[間间]|中[間间]|间|間)
 DateTimePeriodThisRegex: !simpleRegex
   def: (這一?[个個]?|这一?[个個]?)
 DateTimePeriodLastRegex: !simpleRegex

@@ -275,6 +275,7 @@ class ChineseDateParser(BaseDateParser):
         year_chs = RegExpUtility.get_group(match, Constants.YEAR_CJK_GROUP_NAME)
         month_str = RegExpUtility.get_group(match, 'month')
         day_str = RegExpUtility.get_group(match, 'day')
+        if not day_str : day_str = "1號"
         month = 0
         day = 0
         year_tmp = self.convert_chinese_year_to_number(year_chs)
